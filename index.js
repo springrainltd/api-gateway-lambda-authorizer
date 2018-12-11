@@ -338,6 +338,7 @@ exports.handler = async (event, context, callback) => {
     console.log("event: \n", event);
     console.log("Client token:", event.headers.Authorization);
     console.log("Method ARN:", event.methodArn);
+    console.log("stage: ", event.requestContext.stage);
 
     const token = event.headers.Authorization;
     const tokenVerified = jwt.verify(token, variables.apiToken);
@@ -370,19 +371,9 @@ exports.handler = async (event, context, callback) => {
     apiOptions.stage = apiGatewayArnTmp[1];
     // apiOptions.method = apiGatewayArnTmp[2];
 
-    // console.log(apiGatewayArnTmp);
-    // const method = apiGatewayArnTmp[2];
     const method = event.httpMethod;
-    // let resource = "/"; // root resource
     const resource = event.resource;
 
-    // if (apiGatewayArnTmp[3]) {
-    //   for (var i = 3; i < apiGatewayArnTmp.length; i++) {
-    //     resource += `${apiGatewayArnTmp[i]}${
-    //       i == apiGatewayArnTmp.length - 1 ? "" : "/"
-    //     }`;
-    //   }
-    // }
     console.log("method: ", method);
     console.log("resource: ", resource);
 
