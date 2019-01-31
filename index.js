@@ -351,7 +351,7 @@ exports.handler = async (event, context, callback) => {
     // 1. Call out to OAuth provider
     // 2. Decode a JWT token inline
     // 3. Lookup in a self-managed DB
-    const principalId = `user|${tokenVerified.id}`;
+    const principalId = `${tokenVerified.type}|${tokenVerified.id}`;
 
     // you can send a 401 Unauthorized response to the client by failing like so:
     // callback('Unauthorized');
@@ -403,7 +403,8 @@ exports.handler = async (event, context, callback) => {
     //   bool: true
     // };
     authResponse.context = {
-      userid: tokenVerified.id
+      userid: tokenVerified.id,
+      usertype: tokenVerified.type
     };
     console.log(authResponse);
     // authResponse.context.arr = ['foo']; <- this is invalid, APIGW will not accept it
