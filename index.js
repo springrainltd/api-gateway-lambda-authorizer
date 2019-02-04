@@ -52,19 +52,19 @@ exports.handler = function(event, context, callback) {
   const tokenVerified = jwt.verify(token, variables.jwtSecret);
   console.log("verified token: ", tokenVerified);
 
-  var queryStringParameters = event.queryStringParameters;
-  var pathParameters = event.pathParameters;
-  var stageVariables = event.stageVariables;
-  var requestContext = event.requestContext;
+  // var queryStringParameters = event.queryStringParameters;
+  // var pathParameters = event.pathParameters;
+  // var stageVariables = event.stageVariables;
+  // var requestContext = event.requestContext;
 
   // Parse the input for the parameter values
   var tmp = event.methodArn.split(":");
   var apiGatewayArnTmp = tmp[5].split("/");
-  var awsAccountId = tmp[4];
-  var region = tmp[3];
-  var restApiId = apiGatewayArnTmp[0];
+  // var awsAccountId = tmp[4];
+  // var region = tmp[3];
+  // var restApiId = apiGatewayArnTmp[0];
   var stage = apiGatewayArnTmp[1];
-  var method = apiGatewayArnTmp[2];
+  // var method = apiGatewayArnTmp[2];
   var resource = "/"; // root resource
   if (apiGatewayArnTmp[3]) {
     resource += apiGatewayArnTmp[3];
