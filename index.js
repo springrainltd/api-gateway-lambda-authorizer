@@ -1,5 +1,7 @@
 // Help function to generate an IAM policy
 var generatePolicy = function(principalId, effect, resource, authData) {
+  console.log(`principal id ${principalId}`);
+
   // Required output:
   var authResponse = {};
   authResponse.principalId = principalId;
@@ -77,7 +79,14 @@ exports.handler = function(event, context, callback) {
   condition.IpAddress = {};
 
   if (headers.Authorization !== "") {
-    callback(null, generateAllow("me", event.methodArn, tokenVerified));
+    callback(
+      null,
+      generateAllow(
+        `${tokenVerified.usertype}|${tokenVerified.userid}`,
+        event.methodArn,
+        tokenVerified
+      )
+    );
   } else {
     callback("Unauthorized");
   }
