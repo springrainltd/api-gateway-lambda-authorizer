@@ -49,7 +49,7 @@ exports.handler = function(event, context, callback) {
   console.log("headers: \n", headers);
 
   const token = headers.Authorization;
-  const tokenVerified = jwt.verify(token, variables.apiToken);
+  const tokenVerified = jwt.verify(token, variables.jwtSecret);
   console.log("verified token: ", tokenVerified);
 
   var queryStringParameters = event.queryStringParameters;
