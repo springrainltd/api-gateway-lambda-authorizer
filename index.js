@@ -79,7 +79,7 @@ exports.handler = function(event, context, callback) {
     var condition = {};
     condition.IpAddress = {};
 
-    if (headers.Authorization !== "") {
+    if (headers.Authorization === "") {
       throw { status: 401, message: "Authorization header not found" };
     }
     callback(
@@ -91,7 +91,7 @@ exports.handler = function(event, context, callback) {
       )
     );
   } catch (error) {
-    console.log(`error \n ${error}`);
+    console.log("error \n", error);
     callback("Unauthorized");
   }
 };
