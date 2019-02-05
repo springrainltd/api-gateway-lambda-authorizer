@@ -67,18 +67,12 @@ exports.handler = function(event, context, callback) {
     var stage = apiGatewayArnTmp[1];
     // var method = apiGatewayArnTmp[2];
     var resource = event.resource; // root resource
-    // if (apiGatewayArnTmp[3]) {
-    //   resource += apiGatewayArnTmp[3];
-    // }
+    
     console.log("stage: ", stage);
     console.log("resource: ", resource);
+    console.log('method ARN: ', event.methodArn);
 
-    // Perform authorization to return the Allow policy for correct parameters and
-    // the 'Unauthorized' error, otherwise.
-    var authResponse = {};
-    var condition = {};
-    condition.IpAddress = {};
-
+    
     if (headers.Authorization === "") {
       throw { status: 401, message: "Authorization header not found" };
     }
