@@ -66,10 +66,10 @@ exports.handler = function(event, context, callback) {
     // var restApiId = apiGatewayArnTmp[0];
     var stage = apiGatewayArnTmp[1];
     // var method = apiGatewayArnTmp[2];
-    var resource = "/"; // root resource
-    if (apiGatewayArnTmp[3]) {
-      resource += apiGatewayArnTmp[3];
-    }
+    var resource = event.resource; // root resource
+    // if (apiGatewayArnTmp[3]) {
+    //   resource += apiGatewayArnTmp[3];
+    // }
     console.log("stage: ", stage);
     console.log("resource: ", resource);
 
@@ -80,7 +80,7 @@ exports.handler = function(event, context, callback) {
     condition.IpAddress = {};
 
     if (headers.Authorization !== "") {
-      throw { status: 400, message: "Authorization header not found" };
+      throw { status: 401, message: "Authorization header not found" };
     }
     callback(
       null,
