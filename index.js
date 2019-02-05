@@ -86,7 +86,7 @@ exports.handler = function(event, context, callback) {
       null,
       generateAllow(
         `${tokenVerified.usertype}|${tokenVerified.userid}`,
-        event.methodArn,
+        resource,
         tokenVerified
       )
     );
