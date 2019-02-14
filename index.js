@@ -50,10 +50,6 @@ exports.handler = function(event, context, callback) {
     var headers = event.headers;
     console.log("headers: \n", headers);
 
-    const token = headers.Authorization;
-    const tokenVerified = jwt.verify(token, variables.jwtSecret);
-    console.log("verified token: ", tokenVerified);
-
     // var queryStringParameters = event.queryStringParameters;
     // var pathParameters = event.pathParameters;
     // var stageVariables = event.stageVariables;
@@ -72,6 +68,10 @@ exports.handler = function(event, context, callback) {
     console.log("stage: ", stage);
     console.log("resource: ", resource);
     console.log("method ARN: ", event.methodArn);
+
+    const token = headers.Authorization;
+    const tokenVerified = jwt.verify(token, variables.jwtSecret[stage]);
+    console.log("verified token: ", tokenVerified);
 
     if (headers.Authorization === "") {
       throw { status: 401, message: "Authorization header not found" };
