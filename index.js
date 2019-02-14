@@ -21,6 +21,7 @@ var generatePolicy = function(principalId, effect, resource, authData) {
     userid: authData.id,
     usertype: authData.type
   };
+  console.log("policy\n", authResponse.policyDocument);
   return authResponse;
 };
 
