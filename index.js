@@ -60,12 +60,14 @@ exports.handler = function(event, context, callback) {
     var apiGatewayArnTmp = tmp[5].split("/");
     // var awsAccountId = tmp[4];
     // var region = tmp[3];
-    // var restApiId = apiGatewayArnTmp[0];
+    var restApiId = apiGatewayArnTmp[0];
     var stage = apiGatewayArnTmp[1];
     // var method = apiGatewayArnTmp[2];
     var resource = event.resource; // root resource
 
     console.log("stage: ", stage);
+    console.log("api id: ", restApiId);
+
     console.log("resource: ", resource);
     console.log("method ARN: ", event.methodArn);
 
